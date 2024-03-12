@@ -1,0 +1,62 @@
+\newpage
+
+\section{Problem 4 (14 pts)}
+\begin{enumerate}
+    \item Provide a description (in plain English) on what is meant by $\textit{\mathcal{P} Languages}:$\\ \\
+    $\textit{\mathcal{P} Languages} $ is the power set of \textit{Languages} set, which contains all subsets of the given set. In this case, it contains all subsets of \textit{Languages} set.
+    \item Describe in detail (a) what the expression $\textit{Favourites: \mathcal{P} Languages}$ signifies and (b) how it should be interpreted. (c) What could be any legitimate value for variable Favorites?\\ \\
+    This expression is a \textbf{variable declaration}, in which the LHS specifies a variable and the RHS defines a type.
+    In this case, this expression can be expressed as "The variable \textit{Favourites} can assume any value supported by the power set of \textit{Languages}. It means any subset that can be produced from set \textit{Languages} can be a legitimate value of \textit{Favourites}.
+    \item What does the expression \textit{Favourites} = \textit{P Languages} signify and (b) Is semantically equivalent to $\textit{Favourites: \mathcal{P} Languages}$\\ \\
+    This expression is an \textbf{assignment statement}, it assigns the value of the RHS (which is a set) to the variable on the LHS. In this case, variable \textit{Favourites} is assigned to the power set of \textit{Languages}. Meanwhile, in the variable declaration, a variable is associated to a type. Therefore, the two expressions are \textit{not semantically equivalent}.
+    \item Is $\{ \textit{Lua, Groovy, C} \}$ $\in \textit{P Languages}$? Explain in detail.\\ \\ 
+    No, because \{\textit{Lua, Groovy, C}\} is not an element of the power set \textit{P Languages}.
+    \item Is $\{\{ \textit{Lua, Groovy, C} \}\}$ $\subset \textit{P Languages}$? Explain in detail.\\ \\ 
+    Yes, because \{\{\textit{Lua, Groovy, C}\}\} is a set of sets.
+    \item What is the difference between the following two variable declarations (\textit{Languages, P Languages}) and are the two variables atomic and non-atomic? \\ \\
+    \textit{Languages} is a variable, it is a set contains atomic variables and another set. Therefore, it is non-atomic.\\
+    \textit{P Languages} is the power set of \textit{Languages} set, it contains all of the subsets of the given set. Therefore, it is also non-atomic. 
+    \item In the expression \textit{Library} = \{\textit{C, Ruby, Go}\}, where the variable is used to hold any collection that can be constructed from \textit{Languages}, what is the type of the variable?\\ \\
+    The variable \textit{Library} is a \textbf{composite}. It is a set.
+    \item Is $\{\emptyset\} \in \textit{P Languages}$? Explain.\\ \\ 
+    No, There is no set that contains the empty set in the power set of \textit{Languages}.
+    \item \textbf{Programming} using Commom LISP\\ \\
+    Common Lisp contains some build-in functions such as: \\\\
+    \textbf{member item list: } returns true if item is an element of list. Otherwise, it returns false.\\
+    \textbf{equal obj1 obj2: } returns true if two objects are equal. Otherwise, it returns false.
+    Using the given build-in functions, the implementation using Common Lisp is as follows: 
+    \begin{lstlisting}
+        (defun is-memberp (set1 set2)
+            (if (null set 1)
+            t
+            (if (member (car set1) set2)
+                (is-memberp (cdr set1) set2)
+            nil
+            )
+            ))
+    \end{lstlisting}\\ \\
+    \begin{lstlisting}
+        (defun equal-setsp (set1 set2)
+            (and (is-memberp set1 set2) (is-memberp set2 set1)))
+    \end{lstlisting}\\ \\
+    Example runs are as follows: \\\\
+    $\mathbb{>}$ (is-memberp '() '(a, b, c, d))\\
+    T\\
+    $\mathbb{>}$ (is-memberp '(a, c) '(a, b, c, d))\\
+    T\\
+    $\mathbb{>}$ (is-memberp '(a, e) '(a, b, c, d))\\
+    NIL\\
+    $\mathbb{>}$ (is-memberp '(a, d) '(a, b, c, d))\\
+    T\\ \\
+    $\mathbb{>}$ (equal-setsp '() '(a, b, c, d))\\
+    NIL\\
+    $\mathbb{>}$ (equal-setsp '(a, b, c) '(a, c, b))\\
+    T\\
+    $\mathbb{>}$ (equal-setsp '(a, b) '(a, b, c, d))\\
+    NIL\\
+    $\mathbb{>}$ (equal-setsp '() '())\\
+    T\\
+    
+    
+    
+\end{enumerate}

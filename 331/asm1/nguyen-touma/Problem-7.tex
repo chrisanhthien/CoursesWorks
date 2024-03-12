@@ -1,0 +1,40 @@
+\newpage
+
+\section{Problem 7 (10 pts)}
+
+\begin{enumerate}
+    \item Transform the definition into a computable function\\ \\
+    compress(\langle a, a, b, b, b, c, c, a, b \rangle) = \langle a, b, c, a, b \rangle \\
+    = cons(head($\Lambda$), compress(tail($\Lambda$))) \\ \\
+    \item Define f recursively: \\ \\
+    compress($\Lambda$) = $\langle\rangle $  if $ \Lambda$ = \langle\rangle \\
+    compress($\Lambda$) = $\Lambda $ if tail($\Lambda $ = $\langle\rangle$)\\
+    compress($\Lambda$) = compress(tail($\Lambda $)) if head($\Lambda $) = head(tail($\Lambda$))\\
+    compress($\Lambda$) = cons(head($\Lambda$), compress(tail($\Lambda$)))\\ \\
+    \item Unfold the definition for compress(\langle a, a, b, b, c, a \rangle)\\
+    compress(\langle a, a, b, b, c, a \rangle)\\
+    = compress(\langle a, b, b, c, a \rangle)\\
+    = cons(a, compress(\langle b, b, c, a \rangle))\\
+    = cons(a, compress(\langle b, c, a \rangle)\\
+    = cons(a, cons(b, compress(\langle c, a \rangle))\\
+    = cons(a, cons(b, cons(c, compress(\langle a \rangle)))\\
+    = cons(a, cons(b, cons(c, $\langle a \rangle$)))\\
+    = cons(a, cons(b, $\langle c, a \rangle$))\\
+    = cons(a, $\langle b, c, a \rangle$)\\
+    = $\langle a, b, c, a \rangle$\\
+    \item Map definition into Common LISP function\\ \\ 
+    Please find the code attached in compress.lisp file. \\ \\
+    Here is the code: 
+    \begin{lstlisting}
+        (defun compress (list)
+            (cond
+                ((null list) nil)
+                ((null (tail list)) list)
+                ((eql (head list) (head (tail list)))
+                    (compress (tail list)))
+                (t (cons (head list) (compress (tail list))))
+            )
+        )
+    \end{lstlisting}
+    
+\end{enumerate}
