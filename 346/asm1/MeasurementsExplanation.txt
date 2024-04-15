@@ -1,0 +1,5 @@
+Explanation of the measurements running time:
+
+Overall, the execution time for each thread in this practice is quick - in milliseconds. It depends on different reasons such as the specification of used computer, how current CPU is in use, and how the implementation is optimized. This explains why the running time in each thread is different each time it is executed, in which client sending/receiving running time is within 2 - 4 milliseconds, and server is within 8 -  12 milliseconds on my computer. 
+
+According to the measurements when changing the maximum number of buffer, it is shown that the running times for the threads is faster at number of buffer 20 than number of buffer 10. This can be understand by Java program optimizes the running time by reducing the amount of time switching between threads. }
